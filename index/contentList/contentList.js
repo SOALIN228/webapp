@@ -26,7 +26,6 @@
     // 获取数据
     $.get('../json/homelist.json', function (data) {
       let list = data.data.poilist || []
-      console.log(list)
       initContentList(list)
     })
   }
