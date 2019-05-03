@@ -20,7 +20,7 @@
     let str = ''
 
     items.forEach(function (item, index) {
-      str += itemTmpl.replace('$key', item.key)
+      str += itemTmpl.replace(/\$key/g, item.key)
       .replace('$text', item.text)
     })
 
