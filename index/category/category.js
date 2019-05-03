@@ -1,8 +1,9 @@
 (function () {
   // 类目模板字符串
-  let itemTmpl = '<div class="category-item">' +
-    '<img class="item-icon" src="$url" alt="">' +
-    '<p class="item-name">$name</p>' +
+  let itemTmpl =
+    '<div class="category-item">\n' +
+    '  <img class="item-icon" src="$url" alt="">\n' +
+    '  <p class="item-name">$name</p>\n' +
     '</div>'
 
   // 渲染元素
@@ -21,7 +22,7 @@
 
   // 给item添加click事件
   function addClick () {
-    $('.category-content').on('click','.category-item', function () {
+    $('.category-content').on('click', '.category-item', function () {
       console.log(event.target)
     })
   }
