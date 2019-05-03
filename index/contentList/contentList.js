@@ -21,12 +21,18 @@
     '  </div>\n' +
     '</div>'
 
+  let page = 0
+  let isLoading = false
+
   // 获取商家数据
   function getList () {
+    page++
+    isLoading = true
     // 获取数据
     $.get('../json/homelist.json', function (data) {
       let list = data.data.poilist || []
       initContentList(list)
+      isLoading = false
     })
   }
 
@@ -86,8 +92,27 @@
     })
   }
 
+  // 滚动加载
+  function addEvent () {
+    window.addEventListener('scroll', function () {
+      let clienHeight = document.documentElement.clientHeight
+      let scollHeight = document.body.scrollHeight
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let proDis = 30
+      if ((scrollTop + clienHeight) >= (scollHeight - proDis)) {
+        if (page<3) {
+          if (isLoading) {
+            return
+          }
+          getList()
+        }
+      }
+    })
+  }
+
   function init () {
     getList()
+    addEvent()
   }
 
   init()
