@@ -1,7 +1,7 @@
 (function () {
   // 商家详情模板字符串
   let itemTmpl =
-    '<div class="r-item-content">\n' +
+    '<div class="r-item-content scale-1px">\n' +
     '  <img class="item-img" src="$pic_url" alt="">\n' +
     '  $brand\n' +
     '  <div class="item-info-content clearfix">\n' +
@@ -58,7 +58,7 @@
       let _str =
         '<div class="other-info">\n' +
         '  <img src="$icon_url" class="other-tag" alt=""/>\n' +
-        '  <div class="other-content">$info</div>\n' +
+        '  <div class="other-content one-line">$info</div>\n' +
         '</div>'
       _str = _str
       .replace('$icon_url', item.icon_url)
@@ -81,6 +81,7 @@
       .replace('$brand', getBrand(item))
       .replace('$monthNum', getMonthNum(item))
       .replace('$others', getOthers(item))
+      .replace('$wm_poi_score', new StarScore(item.wm_poi_score).getStars())
 
       $('.list-wrap').append(str)
     })
