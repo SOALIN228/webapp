@@ -65,19 +65,21 @@
         '  <img src="$icon_url" class="other-tag" alt=""/>\n' +
         '  <div class="other-content one-line">$info</div>\n' +
         '</div>'
-      _str = _str
+
+      // 字符串拼接
+      str += _str
       .replace('$icon_url', item.icon_url)
       .replace('$info', item.info)
-      // 字符串拼接
-      str = str + _str
     })
+
     return str
   }
 
   // 渲染数据
   function initContentList (list) {
+    let str = ''
     list.forEach(function (item, index) {
-      let str = itemTmpl
+      str += itemTmpl
       .replace('$pic_url', item.pic_url)
       .replace('$name', item.name)
       .replace('$distance', item.distance)
@@ -87,9 +89,8 @@
       .replace('$monthNum', getMonthNum(item))
       .replace('$others', getOthers(item))
       .replace('$wm_poi_score', new StarScore(item.wm_poi_score).getStars())
-
-      $('.list-wrap').append(str)
     })
+    $('.list-wrap').append(str)
   }
 
   // 滚动加载
@@ -100,7 +101,7 @@
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       let proDis = 30
       if ((scrollTop + clienHeight) >= (scollHeight - proDis)) {
-        if (page<3) {
+        if (page < 3) {
           if (isLoading) {
             return
           }

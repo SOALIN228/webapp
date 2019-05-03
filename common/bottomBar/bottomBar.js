@@ -23,6 +23,7 @@
       str += itemTmpl.replace(/\$key/g, item.key)
       .replace('$text', item.text)
     })
+
     $('.bottom-bar').append(str)
 
     // 获取当前页面的url来确定key值

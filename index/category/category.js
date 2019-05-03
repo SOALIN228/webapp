@@ -11,12 +11,13 @@
     // 获取数据
     $.get('../json/head.json', function (data) {
       let list = data.data.primary_filter.splice(0, 8)
+      let str = ''
       list.forEach(function (item, index) {
-        let str = itemTmpl.replace('$url', item.url)
+        str += itemTmpl.replace('$url', item.url)
         .replace('$name', item.name)
-
-        $('.category-content').append(str)
       })
+
+      $('.category-content').append(str)
     })
   }
 
