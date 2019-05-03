@@ -21,21 +21,6 @@
     '  </div>\n' +
     '</div>'
 
-  let page = 0
-  let isLoading = false
-
-  // 获取商家数据
-  function getList () {
-    page++
-    isLoading = true
-    // 获取数据
-    $.get('../json/homelist.json', function (data) {
-      let list = data.data.poilist || []
-      initContentList(list)
-      isLoading = false
-    })
-  }
-
   // 渲染是否是新到和品牌标签
   function getBrand (data) {
     if (data.brand_type) {
@@ -91,6 +76,21 @@
       .replace('$wm_poi_score', new StarScore(item.wm_poi_score).getStars())
     })
     $('.list-wrap').append(str)
+  }
+
+  let page = 0
+  let isLoading = false
+
+  // 获取商家数据
+  function getList () {
+    page++
+    isLoading = true
+    // 获取数据
+    $.get('../json/homelist.json', function (data) {
+      let list = data.data.poilist || []
+      initContentList(list)
+      isLoading = false
+    })
   }
 
   // 滚动加载

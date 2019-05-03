@@ -1,5 +1,5 @@
 .order-list {
-    padding-bottom: 1.6rem;
+    /*padding-bottom: 1.6rem;*/
 }
 
 .order-item {
@@ -93,4 +93,16 @@
     line-height: 0.8533333333rem;
     text-align: center;
     margin-right: 0.2666666667rem;
+}
+
+.loading {
+    padding-bottom: 0.266667rem;
+    padding-top: 0.266667rem;
+    font-size: 0.426667rem;
+    text-align: center;
+    color: #ccc;
+}
+
+.wrap {
+    padding-bottom: 1.6rem
 }

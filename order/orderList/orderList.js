@@ -54,15 +54,15 @@
   }
 
   // 渲染评价按钮
-  function getComment(data){
-    let evaluation = !data.is_comment;
+  function getComment (data) {
+    let evaluation = !data.is_comment
     if (evaluation) {
-      return '<div class="evaluation clearfix">'+
-        '<div class="evaluation-btn">评价</div>'+
-        '</div>';
+      return '<div class="evaluation clearfix">' +
+        '<div class="evaluation-btn">评价</div>' +
+        '</div>'
     }
 
-    return '';
+    return ''
   }
 
   // 渲染列表
@@ -80,16 +80,41 @@
     $('.order-list').append(str)
   }
 
+  let page = 0
+  let isLoading = false
+
   // 请求数据
   function getList () {
+    page++
+    isLoading = true
     $.get('../json/orders.json', function (data) {
       let list = data.data.digestlist || []
       initContentList(list)
+      isLoading = false
+    })
+  }
+
+  // 滚动加载
+  function addEvent () {
+    window.addEventListener('scroll', function () {
+      let clienHeight = document.documentElement.clientHeight
+      let scollHeight = document.body.scrollHeight
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let proDis = 30
+      if ((scrollTop + clienHeight) >= (scollHeight - proDis)) {
+        if (page < 3) {
+          if (isLoading) {
+            return
+          }
+          getList()
+        }
+      }
     })
   }
 
   function init () {
     getList()
+    addEvent()
   }
 
   init()
