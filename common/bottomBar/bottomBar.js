@@ -1,6 +1,6 @@
 (function () {
   let itemTmpl =
-    '<a class="$key btn-item" href="$key.html">\n' +
+    '<a class="$key btn-item" href="../$key/$key.html">\n' +
     '  <div class="tab-icon"></div>\n' +
     '  <div class="btn-name">$text</div>\n' +
     '</a>'
@@ -23,7 +23,6 @@
       str += itemTmpl.replace(/\$key/g, item.key)
       .replace('$text', item.text)
     })
-
     $('.bottom-bar').append(str)
 
     // 获取当前页面的url来确定key值
