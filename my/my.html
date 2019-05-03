@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>订单</title>
+  <title>我的</title>
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1,maximum-scale=1">
   <link rel="stylesheet" href="../lib/reset.css">
   <script type="text/javascript">
@@ -24,22 +24,33 @@
     })
   })()
   </script>
-  <link rel="stylesheet" href="./header/header.css">
-  <link rel="stylesheet" href="./orderList/orderList.css">
+  <link rel="stylesheet" href="my.css">
   <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
 </head>
 <body>
-  <!--  头部-->
-  <div class="header">订单</div>
-  <!--  订单列表-->
-  <div class="wrap">
-    <div class="order-list"></div>
-    <div class="loading">加载中</div>
+  <div class="my">
+    <!--头部栏-->
+    <div class="header">
+      <img class="avatar" src="http://i.waimai.meituan.com/static/img/default-avatar.png" alt=""/>
+      <p class="nickname">美团小骑手 &gt;</p>
+    </div>
+    <!--内容表单区域-->
+    <div class="content">
+      <ul class="items">
+        <li class="address">收货地址管理</li>
+        <li class="money">商家代金券</li>
+      </ul>
+      <ul class="items">
+        <li class="email">意见反馈</li>
+        <li class="question">常见问题</li>
+      </ul>
+      <p class="tel">客服电话:&nbsp;101-097-77</p>
+      <p class="time">服务时间:&nbsp;9:00-23:00</p>
+    </div>
   </div>
   <!--  底部栏-->
   <div class="bottom-bar"></div>
   <script src="../lib/jquery.min.js"></script>
-  <script src="./orderList/orderList.js"></script>
   <script src="../common/bottomBar/bottomBar.js"></script>
 </body>
 </html>
