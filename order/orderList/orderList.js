@@ -60,7 +60,6 @@
       return '<div class="evaluation clearfix">'+
         '<div class="evaluation-btn">评价</div>'+
         '</div>';
-
     }
 
     return '';
