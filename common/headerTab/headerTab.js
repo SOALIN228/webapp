@@ -1,22 +1,17 @@
 (function () {
-  let itemTmpl =
-    '<a class="$key btn-item" href="../$key/$key.html">\n' +
-    '  <div class="tab-icon"></div>\n' +
-    '  <div class="btn-name">$text</div>\n' +
-    '</a>'
+  let itemTmpl = '<a class="$key tab-item" href="$key.html">$text</a>'
 
   function init () {
     let items = [{
-      key: 'index',
-      text: '首页'
+      key: 'menu',
+      text: '点菜'
     }, {
-      key: 'order',
-      text: '订单'
+      key: 'comment',
+      text: '评价'
     }, {
-      key: 'my',
-      text: '我的'
+      key: 'restanurant',
+      text: '商家'
     }]
-
     let str = ''
 
     items.forEach(function (item, index) {
@@ -24,7 +19,7 @@
       .replace('$text', item.text)
     })
 
-    $('.bottom-bar').append(str)
+    $('.tab-bar').append(str)
 
     // 获取当前页面的url来确定key值
     let arr = window.location.pathname.split('/')
