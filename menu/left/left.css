@@ -1,0 +1,49 @@
+.menu-inner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 2.9333333333rem;
+    display: flex;
+    overflow: hidden;
+}
+
+.menu-inner .left-bar {
+    width: 2.2666666667rem;
+    background-color: #efefef;
+    overflow: auto;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.menu-inner .left-bar-inner {
+    padding-bottom: 2.2666666667rem;
+}
+
+.menu-inner .left-item {
+    font-size: 0.3733333333rem;
+    color: #656565;
+    text-align: center;
+    height: 1.6rem;
+    border-bottom: 1px solid #bfbfbf;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-inner .left-item.active {
+    background-color: #fff;
+}
+
+.menu-inner .item-text {
+    line-height: 0.5333333333rem;
+    align-self: center;
+    text-align: center;
+}
+
+.menu-inner .item-icon {
+    width: 0.5333333333rem;
+    height: 0.5333333333rem;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 0.16rem;
+}
