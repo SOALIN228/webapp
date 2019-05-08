@@ -34,10 +34,18 @@
       })
     }
 
+    function addClick () {
+      $('.menu-inner').on('click', '.left-item', function (e) {
+        let $target = $(e.currentTarget)
+        $target.addClass('active')
+        $target.siblings().removeClass('active')
+        Right.refresh($target.data('itemData'))
+      })
+    }
 
     function init () {
       getList()
-      getItemContent()
+      addClick()
     }
 
     init()
