@@ -24,3 +24,9 @@
     background-image: url("./img/back.png");
     background-size: cover;
 }
+
+.nav .back-icon a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

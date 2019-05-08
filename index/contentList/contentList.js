@@ -2,6 +2,7 @@
   // 商家详情模板字符串
   let itemTmpl =
     '<div class="r-item-content scale-1px">\n' +
+    '  <a href="../menu/menu.html"></a>' +
     '  <img class="item-img" src="$pic_url" alt="">\n' +
     '  $brand\n' +
     '  <div class="item-info-content clearfix">\n' +
