@@ -6,10 +6,10 @@
       key: 'menu',
       text: '点菜'
     }, {
-      key: 'comment',
+      key: '#',
       text: '评价'
     }, {
-      key: 'restanurant',
+      key: '#',
       text: '商家'
     }]
     let str = ''
