@@ -1,7 +1,7 @@
 (function () {
   // 顶部模板字符串
   let itemTopTmpl =
-    '<div class="choose-content hide">' +
+    '<div class="choose-content">' +
     '<div class="content-top">' +
     '<div class="clear-car">清空购物车</div>' +
     '</div>' +
@@ -23,12 +23,92 @@
   let $strBottom = $(itemBottomTmpl)
   let $strTop = $(itemTopTmpl)
 
-  function init () {
+  function renderItems () {
+    $($strTop).find('.choose-item').remove()
+    let list = window.food_spu_tags || []
+    let tmpl = '<div data-id="$id" class="choose-item">' +
+      '<div class="item-name">$name</div>' +
+      '<div class="price">¥<span class="total">$price</span></div>' +
+      '<div class="select-content">' +
+      '<div class="minus"></div>' +
+      '<div class="count">$chooseCount</div>' +
+      '<div class="plus"></div>' +
+      '</div>' +
+      '</div>'
 
+    let totalPrice = 0
+    list.forEach(function (item) {
+      item.spus.forEach(function (_item) {
+        if (_item.chooseCount > 0) {
+          var price = _item.min_price * _item.chooseCount
+          var row = tmpl.replace('$id', _item.id)
+          .replace('$name', _item.name)
+          .replace('$price', price)
+          .replace('$chooseCount', _item.chooseCount)
+
+          totalPrice += price
+          $row = $(row)
+          $row.data('itemData', _item)
+          $($strTop).append($row)
+        }
+      })
+    })
+    changeTotalPrice(totalPrice)
+  }
+
+  function changeShippingPrice (val) {
+    $strBottom.find('.shipping-fee').text(val)
+  }
+
+  function changeTotalPrice (val) {
+    $strBottom.find('.total-price-span').text(val)
+  }
+
+  function addClick () {
+    $strTop.on('click', '.plus', function (e) {
+
+      let $count = $(e.currentTarget).parent().find('.count')
+      $count.text(parseInt($count.text() || '0') + 1)
+
+      let $item = $(e.currentTarget).parents('.choose-item').first()
+      let itemData = $item.data('itemData')
+
+      itemData.chooseCount = itemData.chooseCount + 1
+
+      renderItems()
+
+      $('.left-item.active').click()
+    })
+    $strTop.on('click', '.minus', function (e) {
+
+      let $count = $(e.currentTarget).parent().find('.count')
+      let val = Math.max((parseInt($count.text() || '0') - 1), 0)
+
+      if ($count.text() == 0) return
+      let $item = $(e.currentTarget).parents('.choose-item').first()
+
+      let itemData = $item.data('itemData')
+
+      $count.text(val)
+
+      itemData.chooseCount = itemData.chooseCount - 1
+      renderItems()
+      $('.left-item.active').click()
+    })
+  }
+
+  function init () {
     $('.shop-bar').append($strTop)
     $('.shop-bar').append($strBottom)
+    addClick()
   }
 
   init()
+
+  window.ShopBar = {
+    changeTotalPrice: changeTotalPrice,
+    changeShippingPrice: changeShippingPrice,
+    renderItems: renderItems
+  }
 
 })()

@@ -55,6 +55,7 @@
         let itemData = $item.data('itemData')
 
         itemData.chooseCount = itemData.chooseCount + 1
+        window.ShopBar.renderItems()
       })
       $('.menu-item').on('click', '.minus', function (e) {
 
@@ -68,6 +69,7 @@
 
         $count.text(val)
         itemData.chooseCount = itemData.chooseCount - 1
+        window.ShopBar.renderItems()
       })
     }
 

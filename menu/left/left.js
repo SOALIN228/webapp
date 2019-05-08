@@ -4,11 +4,15 @@
       '<div class="item-text">$getItemContent</div>' +
       '</div>'
 
+    window.food_spu_tags = []
+
     // 请求数据
     function getList () {
       $.get('../json/food.json', function (data) {
-        let list = data.data.food_spu_tags || []
-        initContentList(list)
+        window.food_spu_tags = data.data.food_spu_tags || []
+        initContentList(window.food_spu_tags)
+
+        window.ShopBar.changeShippingPrice(data.data.poi_info.shipping_fee || 0)
       })
     }
 
@@ -32,6 +36,7 @@
 
         $('.left-bar-inner').append($target)
       })
+      $('.left-item').first().click()
     }
 
     function addClick () {
