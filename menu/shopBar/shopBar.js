@@ -1,7 +1,7 @@
 (function () {
   // 顶部模板字符串
   let itemTopTmpl =
-    '<div class="choose-content">' +
+    '<div class="choose-content hide">' +
     '<div class="content-top">' +
     '<div class="clear-car">清空购物车</div>' +
     '</div>' +
@@ -23,6 +23,7 @@
   let $strBottom = $(itemBottomTmpl)
   let $strTop = $(itemTopTmpl)
 
+  // 渲染购物车顶部
   function renderItems () {
     $($strTop).find('.choose-item').remove()
     let list = window.food_spu_tags || []
@@ -53,7 +54,10 @@
         }
       })
     })
+    // 改变总价
     changeTotalPrice(totalPrice)
+    // 改变红点个数
+    changeDot()
   }
 
   function changeShippingPrice (val) {
@@ -64,9 +68,29 @@
     $strBottom.find('.total-price-span').text(val)
   }
 
-  function addClick () {
-    $strTop.on('click', '.plus', function (e) {
+  // 改变红点
+  function changeDot () {
 
+    let $counts = $strTop.find('.count')
+    let total = 0
+    for (let i = 0; i < $counts.length; i++) {
+      total += parseFloat($($counts[i]).text())
+    }
+
+    if (total > 0) {
+      $('.dot-num').show().text(total)
+    } else {
+      $('.dot-num').hide()
+    }
+  }
+
+  function addClick () {
+    $('.shop-bar').on('click', '.shop-icon', function (e) {
+      $('.mask').toggle()
+      $strTop.toggle()
+    })
+
+    $strTop.on('click', '.plus', function (e) {
       let $count = $(e.currentTarget).parent().find('.count')
       $count.text(parseInt($count.text() || '0') + 1)
 
