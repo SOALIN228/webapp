@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="../lib/reset.css">
   <script type="text/javascript">
   (function () {
-    var docEl = document.documentElement
+    let docEl = document.documentElement
 
     function setRemUnit () {
-      var rem = docEl.clientWidth / 10
+      let rem = docEl.clientWidth / 10
       docEl.style.fontSize = rem + 'px'
     }
 
@@ -47,14 +47,10 @@
     <img class="header-img" src="http://xs01.meituan.net/waimai_i/img/bannertemp.e8a6fa63.jpg" alt="">
   </div>
   <!--  类目-->
-  <div class="category-content clearfix"></div>
+  <div class="category-content"></div>
   <!--  商家列表-->
   <div class="list-content">
-    <h4 class="list-title">
-      <span class="title-line"></span>
-      <span>附近商家</span>
-      <span class="title-line"></span>
-    </h4>
+    <h4 class="list-title">附近商家</h4>
     <div class="list-wrap"></div>
     <div class="loading">加载中</div>
   </div>

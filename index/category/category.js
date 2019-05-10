@@ -1,37 +1,50 @@
 (function () {
-  // 类目模板字符串
   let itemTmpl =
     '<div class="category-item">\n' +
     '  <img class="item-icon" src="$url" alt="">\n' +
     '  <p class="item-name">$name</p>\n' +
     '</div>'
 
-  // 渲染元素
-  function initCategory () {
+  let view = $('.category-content')
+
+  let model = {
     // 获取数据
-    $.get('../json/head.json', function (data) {
-      let list = data.data.primary_filter.splice(0, 8)
+    fetch: function () {
+      return $.get('../json/head.json')
+    }
+  }
+
+  let controller = {
+    view: null,
+    model: null,
+    itemTmpl: null,
+    init: function (view, model, itemTmpl) {
+      this.view = view
+      this.model = model
+      this.itemTmpl = itemTmpl
+      this.initCategory()
+      this.bindEvents()
+    },
+    initCategory: function () {
+      this.model.fetch().then((data) => {
+        let list = data.data.primary_filter.splice(0, 8)
+        this.loadCategory(list)
+      })
+    },
+    loadCategory: function (list) {
       let str = ''
-      list.forEach(function (item, index) {
+      list.forEach(function (item) {
         str += itemTmpl.replace('$url', item.url)
         .replace('$name', item.name)
       })
-
-      $('.category-content').append(str)
-    })
+      this.view.append(str)
+    },
+    bindEvents: function () {
+      this.view.on('click', '.category-item', function () {
+        console.log(event.target)
+      })
+    }
   }
 
-  // 给item添加click事件
-  function addClick () {
-    $('.category-content').on('click', '.category-item', function () {
-      console.log(event.target)
-    })
-  }
-
-  function init () {
-    initCategory()
-    addClick()
-  }
-
-  init()
+  controller.init(view, model, itemTmpl)
 })()

@@ -3,17 +3,17 @@
   let itemTmpl = '<div class="star-score">$starstr</div>'
 
   function _getStars () {
-    var _score = this.score.toString()
-    var scoreArray = _score.split('.')
+    let _score = this.score.toString()
+    let scoreArray = _score.split('.')
 
     // 满星个数
-    var fullstar = parseInt(scoreArray[0])
+    let fullstar = parseInt(scoreArray[0])
     // 半星个数
-    var halfstar = parseInt(scoreArray[1]) >= 5 ? 1 : 0
+    let halfstar = parseInt(scoreArray[1]) >= 5 ? 1 : 0
     // 0星个数
-    var nullstar = 5 - fullstar - halfstar
+    let nullstar = 5 - fullstar - halfstar
 
-    var starstr = ''
+    let starstr = ''
     // 渲染满星
     for (let i = 0; i < fullstar; i++) {
       starstr += '<div class="star fullstar"></div>'
