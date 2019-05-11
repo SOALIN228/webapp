@@ -1,4 +1,10 @@
-.my .header {
+.mine {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.mine .header {
     width: 100%;
     height: 4.2666666667rem;
     background-image: url("./img/header.png");
@@ -6,7 +12,7 @@
     overflow: hidden;
 }
 
-.my .avatar {
+.mine .avatar {
     width: 1.92rem;
     height: 1.92rem;
     display: block;
@@ -15,24 +21,24 @@
     border-radius: 50%;
 }
 
-.my .nickname {
+.mine .nickname {
     color: #333;
     font-size: 0.4266666667rem;
     text-align: center;
     margin-top: 0.4rem;
 }
 
-.my .content {
-    min-height: 13.52rem;
+.mine .content {
+    flex: 1;
     background-color: #eee;
 }
 
-.my .items {
+.mine .items {
     border-bottom: 0.2666666667rem solid #eee;
     background-color: #fff;
 }
 
-.my .items li {
+.mine .items li {
     height: 1.2rem;
     font-size: 0.3733333333rem;
     line-height: 1.2rem;
@@ -42,11 +48,11 @@
     border-bottom: 1px solid #e4e4e4;
 }
 
-.my .items li:last-child {
+.mine .items li:last-child {
     border: none;
 }
 
-.my .items li:before {
+.mine .items li:before {
     content: '';
     display: block;
     width: 0.4266666667rem;
@@ -58,7 +64,7 @@
     background-size: cover;
 }
 
-.my .items li:after {
+.mine .items li:after {
     content: '>';
     display: block;
     width: 0.4266666667rem;
@@ -69,23 +75,23 @@
     color: #aaa;
 }
 
-.my .items .address:before {
+.mine .items .address:before {
     background-image: url("./img/address.png");
 }
 
-.my .items .money:before {
+.mine .items .money:before {
     background-image: url("./img/money.png");
 }
 
-.my .items .email:before {
+.mine .items .email:before {
     background-image: url("./img/email.png");
 }
 
-.my .items .question:before {
+.mine .items .question:before {
     background-image: url("./img/question.png");
 }
 
-.my .tel {
+.mine .tel {
     font-size: 0.4rem;
     color: #ffb000;
     text-align: center;
@@ -94,7 +100,7 @@
     background-color: #fff;
 }
 
-.my .time {
+.mine .time {
     font-size: 0.3733333333rem;
     text-align: center;
     margin-top: 0.3466666667rem;

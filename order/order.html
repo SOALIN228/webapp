@@ -6,25 +6,7 @@
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1,maximum-scale=1">
   <meta name="format-detection" content="telephone=no,email=no" />
   <link rel="stylesheet" href="../lib/reset.css">
-  <script type="text/javascript">
-  (function () {
-    var docEl = document.documentElement
-
-    function setRemUnit () {
-      var rem = docEl.clientWidth / 10
-      docEl.style.fontSize = rem + 'px'
-    }
-
-    setRemUnit()
-
-    window.addEventListener('resize', setRemUnit)
-    window.addEventListener('pageshow', function (e) {
-      if (e.persisted) {
-        setRemUnit()
-      }
-    })
-  })()
-  </script>
+  <script src="../lib/px2rem.js"></script>
   <link rel="stylesheet" href="./header/header.css">
   <link rel="stylesheet" href="./orderList/orderList.css">
   <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
