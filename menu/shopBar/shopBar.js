@@ -130,7 +130,6 @@
   init()
 
   window.ShopBar = {
-    changeTotalPrice: changeTotalPrice,
     changeShippingPrice: changeShippingPrice,
     renderItems: renderItems
   }
