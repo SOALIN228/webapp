@@ -1,36 +1,39 @@
 (function () {
-  let temp = {
-    itemTmpl: '<div class="order-item">\n' +
-      '  <div class="order-item-inner">\n' +
-      '    <img src="$poi_pic" alt="" class="item-img">\n' +
-      '    <div class="item-right">\n' +
-      '      <div class="item-top">\n' +
-      '        <p class="order-name one-line">$poi_name</p>\n' +
-      '        <div class="arrow"></div>\n' +
-      '        <div class="order-state">$status_description</div>\n' +
-      '      </div>\n' +
-      '      <div class="item-bottom">$getProduct</div>\n' +
-      '    </div>\n' +
-      '  </div>\n' +
-      '  $getComment\n' +
-      '</div>',
-    totalItem: '<div class="product-item">\n' +
-      '  <span>...</span>\n' +
-      '  <div class="p-total-count">\n' +
-      '    总计$product_count个菜，实付\n' +
-      '    <span class="total-price">¥$total</span>\n' +
-      '  </div>\n' +
-      '</div>',
-    productItem: '<div class="product-item">\n' +
-      '$product_name' +
-      '  <div class="p-count">x $product_count</div>\n' +
-      '</div>',
-    commentItem: '<div class="evaluation clearfix">' +
-      '<div class="evaluation-btn">评价</div>' +
-      '</div>'
+  let view = {
+    select: $('.order-list'),
+    itemTmpl: `
+      <div class="order-item">
+        <div class="order-item-inner">
+          <img src="$poi_pic" alt="" class="item-img">
+          <div class="item-right">
+            <div class="item-top">
+              <p class="order-name one-line">$poi_name</p>
+              <div class="arrow"></div>
+              <div class="order-state">$status_description</div>
+            </div>
+            <div class="item-bottom">$getProduct</div>
+          </div>
+        </div>
+        $getComment
+      </div>`,
+    totalItem: `
+      <div class="product-item">
+        <span>...</span>
+        <div class="p-total-count">
+          总计$product_count个菜，实付
+          <span class="total-price">¥$total</span>
+        </div>
+      </div>`,
+    productItem: `
+      <div class="product-item">
+        $product_name
+        <div class="p-count">x $product_count</div>
+      </div>`,
+    commentItem: `
+      <div class="evaluation clearfix">
+        <div class="evaluation-btn">评价</div>
+      </div>`
   }
-
-  let view = $('.order-list')
 
   let model = {
     fetch: function () {
@@ -41,13 +44,11 @@
   let controller = {
     view: null,
     model: null,
-    temp: null,
     page: 0,
     isLoading: false,
-    init: function (view, model, temp) {
+    init: function (view, model) {
       this.view = view
       this.model = model
-      this.temp = temp
       this.getList()
       this.bindEvents()
     },
@@ -63,14 +64,14 @@
     initContentList: function (list) {
       let str = ''
       list.forEach((item) => {
-        str += this.temp.itemTmpl
+        str += this.view.itemTmpl
         .replace('$poi_pic', item.poi_pic)
         .replace('$poi_name', item.poi_name)
         .replace('$status_description', item.status_description)
         .replace('$getProduct', this.getProduct(item))
         .replace('$getComment', this.getComment(item))
       })
-      this.view.append(str)
+      this.view.select.append(str)
     },
     // 渲染菜品
     getProduct: function (data) {
@@ -82,7 +83,7 @@
         if (item.type === 'more') {
           str += this.getTotalPrice(data)
         } else {
-          str += this.temp.productItem
+          str += this.view.productItem
           .replace('$product_name', item.product_name)
           .replace('$product_count', item.product_count)
         }
@@ -90,14 +91,14 @@
       return str
     },
     getTotalPrice: function (data) {
-      return this.temp.totalItem
+      return this.view.totalItem
       .replace('$product_count', data.product_count)
       .replace('$total', data.total)
     },
     // 渲染评价按钮
     getComment: function (data) {
       if (!data.is_comment) {
-        return this.temp.commentItem
+        return this.view.commentItem
       }
       return ''
     },
@@ -121,5 +122,5 @@
     }
   }
 
-  controller.init(view, model, temp)
+  controller.init(view, model)
 })()

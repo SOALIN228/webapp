@@ -1,19 +1,18 @@
 (function () {
-  let itemTmpl =
-    '<a class="$key btn-item" href="../$key/$key.html">\n' +
-    '  <div class="tab-icon"></div>\n' +
-    '  <div class="btn-name">$text</div>\n' +
-    '</a>'
-
-  let view = $('.bottom-bar')
+  let view = {
+    select: $('.bottom-bar'),
+    itemTmpl: `
+      <a class="$key btn-item" href="../$key/$key.html">
+        <div class="tab-icon"></div>
+        <div class="btn-name">$text</div>
+      </a>`
+  }
 
   let controller = {
     view: null,
-    itemTmpl: null,
     items: null,
-    init: function (view, itemTmpl) {
+    init: function (view) {
       this.view = view
-      this.itemTmpl = itemTmpl
       this.initItems()
       this.loadItems()
       this.addCurrentClass()
@@ -32,11 +31,11 @@
     },
     loadItems: function () {
       let str = ''
-      this.items.forEach(function (item, index) {
-        str += itemTmpl.replace(/\$key/g, item.key)
+      this.items.forEach((item) => {
+        str += this.view.itemTmpl.replace(/\$key/g, item.key)
         .replace('$text', item.text)
       })
-      this.view.append(str)
+      this.view.select.append(str)
     },
     addCurrentClass: function () {
       // 获取当前页面的url来确定key值
@@ -47,5 +46,5 @@
     }
   }
 
-  controller.init(view, itemTmpl)
+  controller.init(view)
 })()
