@@ -1,11 +1,12 @@
 (function () {
-  let itemTmpl =
-    '<div class="category-item">\n' +
-    '  <img class="item-icon" src="$url" alt="">\n' +
-    '  <p class="item-name">$name</p>\n' +
-    '</div>'
-
-  let view = $('.category-content')
+  let view = {
+    select: $('.category-content'),
+    itemTmpl: `
+      <div class="category-item">
+        <img class="item-icon" src="$url" alt="">
+        <p class="item-name">$name</p>
+      </div>`
+  }
 
   let model = {
     // 获取数据
@@ -17,11 +18,9 @@
   let controller = {
     view: null,
     model: null,
-    itemTmpl: null,
-    init: function (view, model, itemTmpl) {
+    init: function (view, model) {
       this.view = view
       this.model = model
-      this.itemTmpl = itemTmpl
       this.initCategory()
       this.bindEvents()
     },
@@ -33,18 +32,18 @@
     },
     loadCategory: function (list) {
       let str = ''
-      list.forEach(function (item) {
-        str += itemTmpl.replace('$url', item.url)
+      list.forEach((item) => {
+        str += this.view.itemTmpl.replace('$url', item.url)
         .replace('$name', item.name)
       })
-      this.view.append(str)
+      this.view.select.append(str)
     },
     bindEvents: function () {
-      this.view.on('click', '.category-item', function () {
+      this.view.select.on('click', '.category-item', function () {
         console.log(event.target)
       })
     }
   }
 
-  controller.init(view, model, itemTmpl)
+  controller.init(view, model)
 })()
